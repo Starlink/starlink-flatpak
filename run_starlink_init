@@ -1,0 +1,23 @@
+if [[ -e ~/.bashrc ]]; then
+  . ~/.bashrc
+fi
+
+. /app/etc/profile
+
+echo "             ....."
+echo "       .--====--.........."
+echo "    .-=====.              ...."
+echo "   -=====-                    ...."
+echo "  -=====.                         .."
+echo " .=====-"
+echo
+echo "  S    T    A    R    L    I    N    K"
+echo
+echo "                                .=####="
+echo "    ..                         .=#####."
+echo "       ...                    .=####=."
+echo "          .....             .=####=-"
+echo "               ........---=##==--."
+echo "                      ......"
+
+awk 'NR==1 {printf "%38s\n\n\n", ($1 == "master" ? "dev" : $1)}' < /app/manifests/starlink.version

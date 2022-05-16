@@ -1,0 +1,162 @@
+{
+    "app-id": "edu.hawaii.eao.starlink.Starlink",
+    "branch": "dev",
+    "command": "/app/etc/run_starlink.sh",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "21.08",
+    "sdk": "org.freedesktop.Sdk",
+    "build-options": {
+        "cflags": "",
+        "cflags-override": true,
+        "cxxflags": "-std=c++11",
+        "cxxflags-override": true,
+        "cppflags": "",
+        "cppflags-override": true,
+        "prepend-path": "/app/buildsupport/bin",
+        "env": {
+            "LC_ALL": "C",
+            "CC": "gcc",
+            "CXX": "g++",
+            "FC": "gfortran",
+            "F77": "gfortran",
+            "FFLAGS": "",
+            "STARLINK_DIR": "/app",
+            "STARCONF_DEFAULT_STARLINK": "/app",
+            "STARCONF_DEFAULT_PREFIX": "/app",
+            "DISPLAY": ""
+        }
+    },
+    "cleanup": [
+        "/docs",
+        "/examples",
+        "/man",
+        "/Perl/man",
+        "/share/hdf5_examples",
+        "/bin/oracdr/src/cgi",
+        "/bin/oracdr/src/docs",
+        "/bin/oracdr/src/t",
+        "/bin/oracdr/src/uml"
+    ],
+    "finish-args": [
+        "--env=STARLINK_DIR=/app",
+        "--env=ADAM_USER=/tmp/adam",
+        "--env=AGI_USER=/tmp",
+        "--env=RTD_REMOTE_DIR=/tmp",
+        "--env=GAIA_TEMP_DIR=/tmp",
+        "--env=HDS_SCRATCH=/tmp",
+        "--env=STAR_TEMP=/tmp",
+        "--env=EDITOR=/usr/bin/nano",
+        "--env=LESSOPEN=",
+        "--share=network",
+        "--socket=x11",
+        "--socket=wayland",
+        "--share=ipc",
+        "--device=dri",
+        "--filesystem=host"
+    ],
+    "modules": [
+        {
+            "name": "starlink",
+            "buildsystem": "simple",
+            "build-commands": [
+                "./bootstrap",
+                "make configure-deps",
+                "./configure -C --without-stardocs",
+                "make world",
+                "chmod -R u+w /app"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/Starlink/starlink.git",
+                    "disable-fsckobjects": true
+                },
+                {
+                    "type": "patch",
+                    "paths": [
+                        "patches/pcs_no_tiocsti.patch"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "perlmods",
+            "buildsystem": "simple",
+            "build-options": {
+                "build-args": [
+                    "--share=network"
+                ]
+            },
+            "build-commands": [
+                "source /app/etc/profile; cd thirdparty/perlsys/perlmods; ./build-modules.sh",
+                "chmod -R u+w /app/Perl"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/Starlink/starlink.git",
+                    "disable-fsckobjects": true
+                }
+            ]
+        },
+        {
+            "name": "oracdr",
+            "buildsystem": "simple",
+            "build-commands": [
+                "sh src/version.sh > src/oracdr.version",
+                "install -d /app/news",
+                "install -m644 oracdr.news /app/news",
+                "install -d /app/bin/oracdr",
+                "cp -r cal /app/bin/oracdr/",
+                "cp -r src /app/bin/oracdr/"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/Starlink/ORAC-DR.git"
+                }
+            ]
+        },
+        {
+            "name": "extra",
+            "buildsystem": "simple",
+            "build-commands": [
+                "envsubst '$FLATPAK_ID' < run_starlink.sh > temp.sh",
+                "install -D temp.sh /app/etc/run_starlink.sh",
+                "install run_starlink_init /app/etc",
+                "install -m644 -D starlink_icon.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg",
+                "for x in 16 24; do rsvg-convert -w $x -h $x -f png -o temp.png starlink_icon_small.svg; install -m644 -D temp.png /app/share/icons/hicolor/${x}x${x}/apps/${FLATPAK_ID}.png; done",
+                "for x in 32 48 64 96 128; do rsvg-convert -w $x -h $x -f png -o temp.png starlink_icon.svg; install -m644 -D temp.png /app/share/icons/hicolor/${x}x${x}/apps/${FLATPAK_ID}.png; done",
+                "desktop-file-edit --set-icon=${FLATPAK_ID} starlink.desktop",
+                "install -m644 -D starlink.desktop /app/share/applications/${FLATPAK_ID}.desktop",
+                "install -m644 -D starlink.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "run_starlink.sh"
+                },
+                {
+                    "type": "file",
+                    "path": "run_starlink_init"
+                },
+                {
+                    "type": "file",
+                    "path": "starlink.desktop"
+                },
+                {
+                    "type": "file",
+                    "path": "starlink.metainfo.xml"
+                },
+                {
+                    "type": "file",
+                    "path": "icons/starlink_icon.svg"
+                },
+                {
+                    "type": "file",
+                    "path": "icons/starlink_icon_small.svg"
+                }
+            ]
+        }
+    ]
+}

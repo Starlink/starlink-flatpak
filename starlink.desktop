@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Starlink
+Exec=/app/etc/run_starlink.sh %f
+Terminal=true
+Categories=Science;Astronomy;

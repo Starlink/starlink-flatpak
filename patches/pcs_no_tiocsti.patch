@@ -1,0 +1,13 @@
+diff --git a/libraries/pcs/misc/icl_reada.c b/libraries/pcs/misc/icl_reada.c
+index 394399e..bd49815 100644
+--- a/libraries/pcs/misc/icl_reada.c
++++ b/libraries/pcs/misc/icl_reada.c
+@@ -1535,7 +1535,7 @@ initscreen(int nolines)
+ /* Now simulate a 'newline' */
+         ch = '\n';
+ /* Cygwin doesn't offer this, so just do nothing... */
+-#ifdef TIOCSTI
++#if 0
+ 	if (ioctl(fileno(stdin), TIOCSTI, &ch) < 0) /* Simulate \n tty input */
+ 	    perror("initscreen - ioctl  error");
+ 	else {
