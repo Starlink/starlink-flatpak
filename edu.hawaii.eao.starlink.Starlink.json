@@ -5,6 +5,15 @@
     "runtime": "org.freedesktop.Platform",
     "runtime-version": "21.08",
     "sdk": "org.freedesktop.Sdk",
+    "add-extensions": {
+        "edu.hawaii.eao.starlink.Starlink.StarJava": {
+            "version": "dev",
+            "directory": "starjava",
+            "subdirectories": false,
+            "no-autodownload": true,
+            "autodelete": true
+        }
+    },
     "build-options": {
         "cflags": "",
         "cflags-override": true,
@@ -121,6 +130,8 @@
             "name": "extra",
             "buildsystem": "simple",
             "build-commands": [
+                "install -d /app/starjava",
+                "ln -s starjava/jdk /app/java",
                 "envsubst '$FLATPAK_ID' < run_starlink.sh > temp.sh",
                 "install -D temp.sh /app/etc/run_starlink.sh",
                 "install run_starlink_init /app/etc",

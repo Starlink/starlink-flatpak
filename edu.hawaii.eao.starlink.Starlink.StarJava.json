@@ -1,0 +1,103 @@
+{
+    "id": "edu.hawaii.eao.starlink.Starlink.StarJava",
+    "branch": "dev",
+    "runtime": "edu.hawaii.eao.starlink.Starlink",
+    "runtime-version": "dev",
+    "sdk": "org.freedesktop.Sdk//21.08",
+    "build-extension": true,
+    "separate-locales": false,
+    "appstream-compose": false,
+    "build-options": {
+        "cflags": "",
+        "cflags-override": true,
+        "cxxflags": "-std=c++11",
+        "cxxflags-override": true,
+        "cppflags": "",
+        "cppflags-override": true,
+        "prepend-path": "/app/starjava/bin",
+        "env": {
+            "LC_ALL": "en_US.UTF-8",
+            "LANG": "en_US.UTF-8",
+            "LANGUAGE": "en_US.UTF-8",
+            "CC": "gcc",
+            "CXX": "g++",
+            "FC": "gfortran",
+            "F77": "gfortran",
+            "FFLAGS": "",
+            "STARLINK_DIR": "/app",
+            "STAR_JAVA": "/app/java/bin/java",
+            "DISPLAY": ""
+        }
+    },
+    "cleanup": [
+        "/lib/x86",
+        "/lib/x86_64",
+        "/lib/ppc",
+        "/lib/i386",
+        "/docs"
+    ],
+    "modules": [
+        {
+            "name": "jdk",
+            "buildsystem": "simple",
+            "build-commands": [
+                "mkdir jdk",
+                "cd jdk; tar --strip-components=1 -xzf ../jdk.tar.gz",
+                "cd jdk; echo y | MORE=-1000 ../jai.bin",
+                "cp -r jdk /app/starjava/"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "jdk-8u202-linux-x64.tar.gz",
+                    "dest-filename": "jdk.tar.gz"
+                },
+                {
+                    "type": "file",
+                    "path": "jai-1_1_3-lib-linux-amd64-jdk.bin",
+                    "dest-filename": "jai.bin"
+                }
+            ]
+        },
+        {
+            "name": "starjava",
+            "buildsystem": "simple",
+            "build-options": {
+                "build-args": [
+                    "--share=network"
+                ]
+            },
+            "build-commands": [
+                "cd ant; PATH=`pwd`/bin:$PATH ant -propertyfile ../starjava.properties install",
+                "ant -propertyfile starjava.properties install",
+                "cd jniast; ant -propertyfile ../starjava.properties build-native install test",
+                "cd jnihds; ant -propertyfile ../starjava.properties build-native install test",
+                "cd splat; ant -propertyfile ../starjava.properties build-native install test"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/Starlink/starjava.git"
+                },
+                {
+                    "type": "file",
+                    "path": "starjava.properties"
+                }
+            ]
+        },
+        {
+            "name": "extra",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -m644 -D starjava.metainfo.xml  ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml",
+                "appstream-compose --basename=edu.hawaii.eao.starlink.Starlink --prefix=${FLATPAK_DEST} --origin=flatpak ${FLATPAK_ID}"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "starjava.metainfo.xml"
+                }
+            ]
+        }
+    ]
+}

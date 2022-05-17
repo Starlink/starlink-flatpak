@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="addon">
+    <id>edu.hawaii.eao.starlink.Starlink.StarJava</id>
+    <extends>edu.hawaii.eao.starlink.Starlink</extends>
+    <name>Starlink StarJava</name>
+    <summary>Collection of Java applications for astronomy</summary>
+    <metadata_license>FSFAP</metadata_license>
+    <description>
+        <p>
+            Java applications initially developed for the Starlink Project
+            but now developed independently.
+        </p>
+    </description>
+    <url type="homepage">https://github.com/Starlink/starjava</url>
+    <url type="bugtracker">https://github.com/Starlink/starjava/issues</url>
+</component>
