@@ -1,0 +1,11 @@
+[Flatpak Ref]
+Name=edu.hawaii.eao.starlink.Starlink
+Branch=dev
+Title=Starlink
+Url=https://ftp.eao.hawaii.edu/starlink/flatpak/repo
+SuggestRemoteName=starlink
+Comment=Starlink collection of software for astronomy
+Description=Starlink collection of software for astronomy
+Homepage=https://starlink.eao.hawaii.edu/starlink
+IsRuntime=false
+RuntimeRepo=https://dl.flathub.org/repo/flathub.flatpakrepo

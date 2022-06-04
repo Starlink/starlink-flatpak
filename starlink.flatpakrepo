@@ -1,0 +1,6 @@
+[Flatpak Repo]
+Title=starlink
+Url=https://ftp.eao.hawaii.edu/starlink/flatpak/repo
+Comment=Starlink repository at EAO
+Description=Starlink repository at EAO
+Homepage=https://starlink.eao.hawaii.edu/starlink
