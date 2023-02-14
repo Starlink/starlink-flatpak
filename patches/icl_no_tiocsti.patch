@@ -1,0 +1,13 @@
+diff --git a/applications/icl/icl_io.c b/applications/icl/icl_io.c
+index a08690e..a3d5eea 100644
+--- a/applications/icl/icl_io.c
++++ b/applications/icl/icl_io.c
+@@ -2406,7 +2406,7 @@ struct sigaction act;
+  * (by simulating a '\n' typed on the terminal) and transfer the characters to
+  * our own type-ahead buffer
+  */
+-#ifdef TIOCSTI
++#if 0
+ /* Firstly turn off echo so our additional newline is not visible */
+         init_tty.c_lflag &= ~ECHO;
+         tcsetattr(fileno(stdin), TCSANOW, &init_tty);
