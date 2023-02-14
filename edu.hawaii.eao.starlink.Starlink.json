@@ -3,7 +3,7 @@
     "branch": "dev",
     "command": "/app/etc/run_starlink.sh",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "21.08",
+    "runtime-version": "22.08",
     "sdk": "org.freedesktop.Sdk",
     "add-extensions": {
         "edu.hawaii.eao.starlink.Starlink.StarJava": {
@@ -130,6 +130,7 @@
             "name": "extra",
             "buildsystem": "simple",
             "build-commands": [
+                "cp /usr/lib/x86_64-linux-gnu/libyaml* /app/lib/",
                 "install -d /app/starjava",
                 "ln -s starjava/jdk /app/java",
                 "envsubst '$FLATPAK_ID' < run_starlink.sh > temp.sh",

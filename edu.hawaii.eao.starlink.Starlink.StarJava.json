@@ -3,7 +3,7 @@
     "branch": "dev",
     "runtime": "edu.hawaii.eao.starlink.Starlink",
     "runtime-version": "dev",
-    "sdk": "org.freedesktop.Sdk//21.08",
+    "sdk": "org.freedesktop.Sdk//22.08",
     "build-extension": true,
     "separate-locales": false,
     "appstream-compose": false,
