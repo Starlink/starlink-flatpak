@@ -1,13 +1,13 @@
 {
     "app-id": "edu.hawaii.eao.starlink.Starlink",
-    "branch": "dev",
+    "branch": "2023A",
     "command": "/app/etc/run_starlink.sh",
     "runtime": "org.freedesktop.Platform",
     "runtime-version": "22.08",
     "sdk": "org.freedesktop.Sdk",
     "add-extensions": {
         "edu.hawaii.eao.starlink.Starlink.StarJava": {
-            "version": "dev",
+            "version": "2023A",
             "directory": "starjava",
             "subdirectories": false,
             "no-autodownload": true,
@@ -78,6 +78,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/Starlink/starlink.git",
+                    "branch": "2023A",
+                    "commit": "3919fa50ba5b596c290b81f053a1ab4e8a92b77c",
                     "disable-fsckobjects": true
                 },
                 {
@@ -105,6 +107,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/Starlink/starlink.git",
+                    "branch": "2023A",
+                    "commit": "3919fa50ba5b596c290b81f053a1ab4e8a92b77c",
                     "disable-fsckobjects": true
                 }
             ]
@@ -123,7 +127,9 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://github.com/Starlink/ORAC-DR.git"
+                    "url": "https://github.com/Starlink/ORAC-DR.git",
+                    "branch": "2023A",
+                    "commit": "51aab8cb06a00a8599416677b5fbb8e7758b9087"
                 }
             ]
         },
