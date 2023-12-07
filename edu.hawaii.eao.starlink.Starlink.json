@@ -79,7 +79,7 @@
                     "type": "git",
                     "url": "https://github.com/Starlink/starlink.git",
                     "branch": "2023A",
-                    "commit": "3919fa50ba5b596c290b81f053a1ab4e8a92b77c",
+                    "commit": "daf52ee37dbdf4750daef55dd7bfe027d57a8325",
                     "disable-fsckobjects": true
                 },
                 {
@@ -108,7 +108,7 @@
                     "type": "git",
                     "url": "https://github.com/Starlink/starlink.git",
                     "branch": "2023A",
-                    "commit": "3919fa50ba5b596c290b81f053a1ab4e8a92b77c",
+                    "commit": "daf52ee37dbdf4750daef55dd7bfe027d57a8325",
                     "disable-fsckobjects": true
                 }
             ]
@@ -129,7 +129,7 @@
                     "type": "git",
                     "url": "https://github.com/Starlink/ORAC-DR.git",
                     "branch": "2023A",
-                    "commit": "51aab8cb06a00a8599416677b5fbb8e7758b9087"
+                    "commit": "b50ff9e5a109fe7c76688d58a2b9d46c8de6f5ce"
                 }
             ]
         },
