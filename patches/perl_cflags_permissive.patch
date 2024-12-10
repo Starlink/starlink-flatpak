@@ -1,0 +1,13 @@
+diff --git a/thirdparty/perlsys/perl/configure.ac b/thirdparty/perlsys/perl/configure.ac
+index 51738d34..23eb0dd2 100644
+--- a/thirdparty/perlsys/perl/configure.ac
++++ b/thirdparty/perlsys/perl/configure.ac
+@@ -34,6 +34,8 @@ dnl    which are not exported. Hack: note that a problem in Perl requires that
+ dnl    we add CFLAGS to lddlflags, but that's not directly possible, so we
+ dnl    push it through as part of optimize.
+ (
++   CFLAGS="$CFLAGS -fpermissive"
++
+    test -n "$CFLAGS" && export CFLAGS
+    test -n "$CC" && export CC
+    test -n "$LDFLAGS" && export LDFLAGS

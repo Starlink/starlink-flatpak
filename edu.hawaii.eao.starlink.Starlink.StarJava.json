@@ -3,10 +3,9 @@
     "branch": "dev",
     "runtime": "edu.hawaii.eao.starlink.Starlink",
     "runtime-version": "dev",
-    "sdk": "org.freedesktop.Sdk//22.08",
+    "sdk": "org.freedesktop.Sdk//24.08",
     "build-extension": true,
     "separate-locales": false,
-    "appstream-compose": false,
     "build-options": {
         "cflags": "",
         "cflags-override": true,
@@ -89,8 +88,7 @@
             "name": "extra",
             "buildsystem": "simple",
             "build-commands": [
-                "install -m644 -D starjava.metainfo.xml  ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml",
-                "appstream-compose --basename=edu.hawaii.eao.starlink.Starlink --prefix=${FLATPAK_DEST} --origin=flatpak ${FLATPAK_ID}"
+                "install -m644 -D starjava.metainfo.xml  ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml"
             ],
             "sources": [
                 {

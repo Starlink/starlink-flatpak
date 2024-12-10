@@ -3,7 +3,7 @@
     "branch": "dev",
     "command": "/app/etc/run_starlink.sh",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "22.08",
+    "runtime-version": "24.08",
     "sdk": "org.freedesktop.Sdk",
     "add-extensions": {
         "edu.hawaii.eao.starlink.Starlink.StarJava": {
@@ -15,7 +15,7 @@
         }
     },
     "build-options": {
-        "cflags": "",
+        "cflags": "-Wno-error=incompatible-pointer-types",
         "cflags-override": true,
         "cxxflags": "-std=c++11",
         "cxxflags-override": true,
@@ -84,7 +84,9 @@
                     "type": "patch",
                     "paths": [
                         "patches/icl_no_tiocsti.patch",
-                        "patches/pcs_no_tiocsti.patch"
+                        "patches/pcs_no_tiocsti.patch",
+                        "patches/perl_cflags_permissive.patch",
+                        "patches/starmem_gnu_source.patch"
                     ]
                 }
             ]
@@ -106,6 +108,12 @@
                     "type": "git",
                     "url": "https://github.com/Starlink/starlink.git",
                     "disable-fsckobjects": true
+                },
+                {
+                    "type": "patch",
+                    "paths": [
+                        "patches/perl_modules_notest.patch"
+                    ]
                 }
             ]
         },
@@ -131,7 +139,6 @@
             "name": "extra",
             "buildsystem": "simple",
             "build-commands": [
-                "cp /usr/lib/x86_64-linux-gnu/libyaml* /app/lib/",
                 "install -d /app/starjava",
                 "ln -s starjava/jdk /app/java",
                 "envsubst '$FLATPAK_ID' < run_starlink.sh > temp.sh",
