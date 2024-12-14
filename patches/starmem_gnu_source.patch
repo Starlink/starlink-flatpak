@@ -1,0 +1,14 @@
+diff --git a/libraries/starmem/dlmalloc.c b/libraries/starmem/dlmalloc.c
+index f21d0e11..7773b182 100644
+--- a/libraries/starmem/dlmalloc.c
++++ b/libraries/starmem/dlmalloc.c
+@@ -438,6 +438,9 @@ DEFAULT_MMAP_THRESHOLD       default: 256K
+ 
+ */
+ 
++/* For mremap: */
++#define _GNU_SOURCE
++
+ /* For starmem we want to use the dl prefix for names so that we can
+    switch mallocs at runtime - TJ */
+ #define USE_DL_PREFIX
