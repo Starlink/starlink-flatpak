@@ -1,8 +1,8 @@
 {
     "id": "edu.hawaii.eao.starlink.Starlink.StarJava",
-    "branch": "2023A",
+    "branch": "2025A",
     "runtime": "edu.hawaii.eao.starlink.Starlink",
-    "runtime-version": "2023A",
+    "runtime-version": "2025A",
     "sdk": "org.freedesktop.Sdk//24.08",
     "build-extension": true,
     "separate-locales": false,
@@ -77,8 +77,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/Starlink/starjava.git",
-                    "branch": "2023A",
-                    "commit": "bf58b750b26eaaef45426610888dbee8af36b858"
+                    "branch": "2025A",
+                    "commit": "2142a44fa55aa60e6fd199dfe53d50cb2dc5737d"
                 },
                 {
                     "type": "file",
