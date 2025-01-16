@@ -83,8 +83,6 @@
                 {
                     "type": "patch",
                     "paths": [
-                        "patches/icl_no_tiocsti.patch",
-                        "patches/pcs_no_tiocsti.patch",
                         "patches/perl_cflags_permissive.patch",
                         "patches/starmem_gnu_source.patch"
                     ]
